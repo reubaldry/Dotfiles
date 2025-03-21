@@ -1,0 +1,23 @@
+font-size = 15
+macos-titlebar-style = hidden
+
+confirm-close-surface = false
+
+# keybindings
+keybind = ctrl+s>r=reload_config
+keybind = ctrl+s>n=new_window
+keybind = ctrl+s>q=text:nvim ~/.config/ghostty/config\r
+
+#splits
+keybind = ctrl+s>\=new_split:right
+keybind = ctrl+s>-=new_split:down
+keybind = ctrl+s>h=goto_split:left
+keybind = ctrl+s>j=goto_split:bottom
+keybind = ctrl+s>k=goto_split:top
+keybind = ctrl+s>l=goto_split:right
+
+keybind = ctrl+s>x=close_surface
+
+# theme
+theme = Everforest Dark - Hard
+background = #272E32

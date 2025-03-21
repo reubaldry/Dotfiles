@@ -1,0 +1,209 @@
+# ================================================================
+#                             MODES
+# ================================================================
+# Defines different modes for different commands.
+# ----------------------------------------------------------------
+
+
+:: float
+:: layout
+:: move
+:: config
+
+alt + shift - m ; move
+alt + shift - c ; config
+alt + shift - l ; layout
+alt + shift - f ; float
+
+move, config, layout, float < escape ; default
+
+
+# ================================================================
+#                             APPS
+# ================================================================
+# Launch applications directly from default mode using cmd + ctrl.
+# Use these bindings to quickly open your favorite apps.
+# ----------------------------------------------------------------
+
+
+cmd + ctrl - t : open -a /Applications/Ghostty.app/Contents/MacOS/ghostty
+cmd + shift + ctrl - t : open -n -a /Applications/Ghostty.app/Contents/MacOS/ghostty
+cmd + ctrl - f : open -a /Applications/Firefox.app/Contents/MacOS/firefox
+cmd + shift + ctrl - f : open -n -a /Applications/Firefox.app/Contents/MacOS/firefox
+cmd + ctrl - w : open -a /Applications/WhatsApp.app/Contents/MacOS/WhatsApp
+cmd + ctrl - o : open -a /Applications/Obsidian.app/Contents/MacOS/Obsidian
+
+
+# ================================================================
+#                            SPACES
+# ================================================================
+# Use ctrl + alt bindings to manage spaces.
+# Create, destroy, and focus spaces with the following shortcuts.
+# ----------------------------------------------------------------
+
+
+# Change layout mode of space
+ctrl + alt - b : yabai -m space --layout bsp
+ctrl + alt - f : yabai -m space --layout float
+
+# Create and delete spaces on the active display
+ctrl + alt - c : yabai -m space --create
+ctrl + alt - d : yabai -m space --destroy
+
+# Focus specific spaces
+ctrl + alt - 1 : yabai -m space --focus 1
+ctrl + alt - 2 : yabai -m space --focus 2
+ctrl + alt - 3 : yabai -m space --focus 3
+ctrl + alt - 4 : yabai -m space --focus 4
+ctrl + alt - 5 : yabai -m space --focus 5
+ctrl + alt - 6 : yabai -m space --focus 6
+ctrl + alt - 7 : yabai -m space --focus 7
+ctrl + alt - 8 : yabai -m space --focus 8
+ctrl + alt - 9 : yabai -m space --focus 9
+
+# Focus adjacent spaces
+ctrl + alt - h : yabai -m space --focus prev
+ctrl + alt - l : yabai -m space --focus next
+
+# Focus other display
+ctrl + alt - m : yabai -m display --focus recent
+
+
+# ================================================================
+#                           WINDOWS
+# ================================================================
+# Use alt bindings to manage windows.
+# Focus and move windows with these shortcuts.
+# ----------------------------------------------------------------
+
+
+# Focus window
+alt - h : yabai -m window --focus west
+alt - l : yabai -m window --focus east
+alt - k : yabai -m window --focus north
+alt - j : yabai -m window --focus south
+
+# Swap windows (in BSP layout)
+alt - u : yabai -m window --swap west
+alt - i : yabai -m window --swap south
+alt - o : yabai -m window --swap north
+alt - p : yabai -m window --swap east
+
+# Float/unfloat window and center
+alt - f : yabai -m window --toggle float; yabai -m window --grid 4:4:1:1:2:2
+
+# Increase window size while keeping center fixed
+alt - x : yabai -m window --resize left:-15:0; yabai -m window --resize right:15:0; yabai -m window --resize top:0:-9; yabai -m window --resize bottom:0:9
+
+# Decrease window size while keeping center fixed
+alt - z : yabai -m window --resize left:15:0; yabai -m window --resize right:-15:0; yabai -m window --resize top:0:9; yabai -m window --resize bottom:0:-9
+
+# Resize to preset (small, medium, large) and center window
+alt - b : yabai -m window --grid 4:4:1:1:2:2
+alt - n : yabai -m window --grid 8:8:1:1:6:6
+alt - m : yabai -m window --grid 200:200:1:1:198:198
+
+# cycle all windows on space backwards by coordinate
+cmd - tab : yabai -m window --focus "$(yabai -m query --windows --space | jq -re "[sort_by(.id, .frame) | reverse | .[] | select(.role == \"AXWindow\" and .subrole == \"AXStandardWindow\") | .id] | nth(index($(yabai -m query --windows --window | jq -re ".id")) - 1)")"
+
+
+# ================================================================
+#                           CONFIG
+# ================================================================
+# Changes some configs
+# ----------------------------------------------------------------
+
+
+# Mouse support
+config < alt - m : yabai -m config focus_follows_mouse autoraise
+config < alt - n : yabai -m config focus_follows_mouse off
+
+# Reset top padding for when I connect a monitor
+config < alt - r : set_top_padding.sh
+
+# Toggle global float
+config < alt - t : sh -c 'LAYOUT=$(yabai -m query --spaces --space | jq -r ".type"); if [ "$LAYOUT" = "bsp" ]; then yabai -m config layout float; else yabai -m config layout bsp; fi'
+
+
+# ================================================================
+#                           LAYOUT
+# ================================================================
+# Change your layout
+# ----------------------------------------------------------------
+
+
+# Increase window sizes
+layout < alt - h : yabai -m window --resize left:-20:0
+layout < alt - j : yabai -m window --resize bottom:0:20
+layout < alt - k : yabai -m window --resize top:0:-20
+layout < alt - l : yabai -m window --resize right:20:0
+
+# Decrease window sizes
+layout < shift + alt - h : yabai -m window --resize left:20:0
+layout < shift + alt - j : yabai -m window --resize bottom:0:-20
+layout < shift + alt - k : yabai -m window --resize top:0:20
+layout < shift + alt - l : yabai -m window --resize right:-20:0
+
+# Mirror window layout
+layout < alt - y : yabai -m space --mirror y-axis
+layout < alt - x : yabai -m space --mirror x-axis
+
+# Balance windows
+layout < alt - 0 : yabai -m space --balance
+
+# Rotate tree
+layout < alt - r : yabai -m space --rotate 90
+
+
+# ================================================================
+#                           MOVE
+# ================================================================
+# Move windows between spaces
+# ----------------------------------------------------------------
+
+
+# Move windows between spaces and focus the space
+move < alt - p : yabai -m window --space prev; yabai -m space --focus prev
+move < alt - n : yabai -m window --space next; yabai -m space --focus next
+move < alt - 1 : yabai -m window --space 1; yabai -m space --focus 1
+move < alt - 2 : yabai -m window --space 2; yabai -m space --focus 2
+move < alt - 3 : yabai -m window --space 3; yabai -m space --focus 3
+move < alt - 4 : yabai -m window --space 4; yabai -m space --focus 4
+move < alt - 5 : yabai -m window --space 5; yabai -m space --focus 5
+move < alt - 6 : yabai -m window --space 6; yabai -m space --focus 6
+move < alt - 7 : yabai -m window --space 7; yabai -m space --focus 7
+move < alt - 8 : yabai -m window --space 8; yabai -m space --focus 8
+move < alt - 9 : yabai -m window --space 9; yabai -m space --focus 9
+move < alt - 0 : yabai -m window --space 10; yabai -m space --focus 10
+
+
+# ================================================================
+#                           Float layout
+# ================================================================
+# Puts floating windows in grid positions.
+# ----------------------------------------------------------------
+
+
+# Top left corner
+float < 1 : yabai -m window --grid 200:200:0:0:100:100
+
+# Top right corner
+float < 2 : yabai -m window --grid 200:200:100:0:100:100
+
+# Bottom right corner
+float < 3 : yabai -m window --grid 200:200:100:100:100:100
+
+# Bottom left corner
+float < 4 : yabai -m window --grid 200:200:0:100:100:100
+
+# Left half
+float < h : yabai -m window --grid 200:200:0:0:100:200
+
+# Bottom half
+float < j : yabai -m window --grid 200:200:0:100:200:100
+
+# Top half
+float < k : yabai -m window --grid 200:200:0:0:200:100
+
+# Right half
+float < l : yabai -m window --grid 200:200:100:0:100:200
