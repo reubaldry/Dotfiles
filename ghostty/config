@@ -5,7 +5,7 @@ confirm-close-surface = false
 
 # keybindings
 keybind = ctrl+s>r=reload_config
-keybind = ctrl+s>n=new_window
+keybind = ctrl+s>c=new_tab
 keybind = ctrl+s>q=text:nvim ~/.config/ghostty/config\r
 
 #splits
@@ -17,6 +17,8 @@ keybind = ctrl+s>k=goto_split:top
 keybind = ctrl+s>l=goto_split:right
 
 keybind = ctrl+s>x=close_surface
+
+keybind = global:cmd+grave_accent=toggle_quick_terminal
 
 # theme
 theme = Everforest Dark - Hard

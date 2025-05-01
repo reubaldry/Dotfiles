@@ -11,4 +11,14 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
 })
 
+-- Set tab/indent settings for C files
+--vim.api.nvim_create_autocmd("FileType", {
+--  pattern = "c",
+--  callback = function()
+--    vim.bo.tabstop = 4 -- Number of spaces that a <Tab> counts for
+--    vim.bo.shiftwidth = 4 -- Number of spaces for each indentation
+--    vim.bo.expandtab = true -- Use spaces instead of tabs
+--  end,
+--})
+
 LazyVim.terminal.setup("Ghostty")
