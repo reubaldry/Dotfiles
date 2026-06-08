@@ -1,14 +1,15 @@
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
 # for this to work you must configure sudo such that
 # it will be able to run the command without password
 
-yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
-sudo yabai --load-sa
 
 # .. more yabai startup stuff
 
 # yabai -m config --space 1 layout float
 # bsp or float (default: float)
 yabai -m config layout bsp
+yabai -m config menubar_opacity 0.0
 
 # Override default layout for space 1 only
 
@@ -54,11 +55,12 @@ yabai -m config normal_window_opacity 0.95
 yabai -m config auto_balance on
 
 
+
 yabai -m rule --add app="^Skim$" opacity=1
 yabai -m rule --add app="^Microsoft Outlook$" 
-yabai -m rule --add app="^System Settings$" layout=float
+yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add app="^Raycast$" manage=off
 yabai -m rule --add app="^Settings$" manage=off
 yabai -m rule --add title="^yazi$" grid=8:8:1:1:6:6 manage=off
 
-borders active_color=0xff34a77c inactive_color=0xffb28b5a width=5.0 hidpi=true&
+borders active_color=0xff34a77c inactive_color=0xffb28b5a width=5.0 hidpi=on&

@@ -17,9 +17,3 @@ keybind = ctrl+s>k=goto_split:top
 keybind = ctrl+s>l=goto_split:right
 
 keybind = ctrl+s>x=close_surface
-
-keybind = global:cmd+grave_accent=toggle_quick_terminal
-
-# theme
-theme = Everforest Dark - Hard
-background = #272E32
