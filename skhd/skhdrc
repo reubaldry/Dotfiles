@@ -25,7 +25,7 @@ move, config, layout, float < escape ; default
 # Use these bindings to quickly open your favorite apps.
 # ----------------------------------------------------------------
 
-
+# App launchers
 cmd + ctrl - t : open -a /Applications/Ghostty.app/Contents/MacOS/ghostty
 cmd + shift + ctrl - t : open -n -a /Applications/Ghostty.app/Contents/MacOS/ghostty
 cmd + ctrl - f : open -a /Applications/Firefox.app/Contents/MacOS/firefox
@@ -35,6 +35,14 @@ cmd + ctrl - o : open -a /Applications/Obsidian.app/Contents/MacOS/Obsidian
 #cmd + ctrl - e : open -n -a Ghostty --args --title=yazi -e /opt/homebrew/bin/yazi
 #cmd + ctrl - e : open -n -a Ghostty --args --title=yazi -e /bin/zsh -c "/opt/homebrew/bin/yazi"
 cmd + ctrl - e : open -n -a Ghostty --args --config-file=$HOME/.config/ghostty/yazi-launcher
+
+# Special launchers
+# ctrl + enter : yabai -m rule --add app="Ghostty" title="Scratchpad" manage=off grid=1:1:0:0:1:1
+
+# Change ghostty opacity
+cmd - brightness_up : ~/.config/ghostty/scripts/opacity.sh inc
+cmd - brightness_down : ~/.config/ghostty/scripts/opacity.sh dec
+cmd - escape : ~/.config/ghostty/scripts/opacity.sh
 
 # ================================================================
 #                            SPACES
@@ -141,10 +149,10 @@ alt + shift - k : /opt/homebrew/bin/yabai -m window --resize top:0:-20
 alt + shift - l : /opt/homebrew/bin/yabai -m window --resize right:20:0
 
 # Decrease window sizes
-alt + shift - u : /opt/homebrew/bin/yabai -m window --resize left:20:0
+alt + shift - p : /opt/homebrew/bin/yabai -m window --resize left:20:0
 alt + shift - i : /opt/homebrew/bin/yabai -m window --resize bottom:0:-20
 alt + shift - o : /opt/homebrew/bin/yabai -m window --resize top:0:20
-alt + shift - p : /opt/homebrew/bin/yabai -m window --resize right:-20:0
+alt + shift - u : /opt/homebrew/bin/yabai -m window --resize right:-20:0
 
 # Mirror window layout
 alt - 0x2A : /opt/homebrew/bin/yabai -m space --mirror y-axis
