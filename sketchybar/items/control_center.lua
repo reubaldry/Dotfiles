@@ -10,8 +10,9 @@ local control_center = sbar.add("item", {
 })
 
 control_center:subscribe("mouse.clicked", function(env)
-	-- sbar.exec runs safely in the background
-	sbar.exec(
-		[[osascript -e 'tell application "System Events" to tell process "ControlCenter" to click menu bar item 4 of menu bar 1']]
-	)
+	-- Point to your compiled C binary
+	local menu_helper = os.getenv("HOME") .. "/.config/sketchybar/helpers/menus/bin/menus"
+
+	-- Pass the specific Control Center alias string
+	os.execute(menu_helper .. ' -s "Control Center,BentoBox-0" > /dev/null 2>&1 &')
 end)

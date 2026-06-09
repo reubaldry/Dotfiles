@@ -1,5 +1,8 @@
 local colors = require("colors")
+local icons = require("icons")
+local settings = require("settings")
 
+-- 1. THE SPACES
 local function mouse_click(env)
 	if env.BUTTON == "right" then
 		sbar.exec("yabai -m space --destroy " .. env.SID)
@@ -20,7 +23,7 @@ end
 
 local spaces = {}
 for i = 1, 10, 1 do
-	local space = sbar.add("space", {
+	local space = sbar.add("space", "space." .. i, {
 		associated_space = i,
 		icon = {
 			string = i,
@@ -46,11 +49,13 @@ for i = 1, 10, 1 do
 	space:subscribe("mouse.clicked", mouse_click)
 end
 
-sbar.add("bracket", spaces, {
+-- 2. THE BRACKET
+sbar.add("bracket", "space.bracket", spaces, {
 	background = { color = colors.bg1, border_color = colors.bg2 },
 })
 
-local space_creator = sbar.add("item", {
+-- 3. THE SPACE CREATOR
+local space_creator = sbar.add("item", "space.creator", {
 	padding_left = 10,
 	padding_right = 8,
 	icon = {
@@ -66,4 +71,20 @@ local space_creator = sbar.add("item", {
 
 space_creator:subscribe("mouse.clicked", function(_)
 	sbar.exec("yabai -m space --create")
+end)
+
+-- 4. THE TOGGLE BUTTON (Moved to the right)
+local apple_logo = sbar.add("item", "apple_logo", {
+	position = "left",
+	icon = {
+		string = icons.switch.on,
+		font = { size = 18.0 },
+	},
+	label = { drawing = false },
+	padding_left = 10,
+	padding_right = 10,
+})
+
+apple_logo:subscribe("mouse.clicked", function()
+	sbar.trigger("swap_menus_and_spaces")
 end)
