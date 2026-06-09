@@ -17,7 +17,7 @@ sbar.default({
 	label = {
 		font = {
 			family = settings.font,
-			style = "Semibold",
+			style = "Bold",
 			size = 14.0,
 		},
 		color = colors.white,
