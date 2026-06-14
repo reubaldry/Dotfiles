@@ -6,7 +6,7 @@ local control_center = sbar.add("item", {
 	},
 	label = { drawing = false },
 	padding_right = 10,
-	padding_left = 10,
+	padding_left = 0,
 })
 
 control_center:subscribe("mouse.clicked", function(env)

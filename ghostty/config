@@ -1,7 +1,13 @@
+# Theme and customisations
 font-size = 15
-macos-titlebar-style = hidden
+theme = Morning Mountain
+background-opacity = 0.60
+background-blur = macos-glass-clear
 
 confirm-close-surface = false
+
+#Window settings
+macos-titlebar-style = hidden
 
 # keybindings
 keybind = ctrl+s>r=reload_config

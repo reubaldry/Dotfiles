@@ -88,3 +88,26 @@ local apple_logo = sbar.add("item", "apple_logo", {
 apple_logo:subscribe("mouse.clicked", function()
 	sbar.trigger("swap_menus_and_spaces")
 end)
+
+local function hide_scratchpad()
+	-- Asynchronously query Yabai for the scratchpad index
+	sbar.exec("yabai -m query --spaces | jq -r '.[] | select(.label == \"scratchpad\") | .index'", function(result)
+		-- Safely extract the number from the jq output
+		local index = result:match("%d+")
+
+		if index then
+			-- Force the corresponding SketchyBar space item to hide
+			sbar.set("space." .. index, { drawing = false })
+		end
+	end)
+end
+
+-- Run it immediately on boot
+hide_scratchpad()
+
+-- Hook it into the space_creator's global space_change event.
+-- If macOS shifts space indices (e.g., you create or delete a normal space),
+-- this ensures the phantom space is instantly re-hidden.
+space_creator:subscribe("space_change", function(_)
+	hide_scratchpad()
+end)

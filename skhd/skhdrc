@@ -34,15 +34,20 @@ cmd + ctrl - w : open -a /Applications/WhatsApp.app/Contents/MacOS/WhatsApp
 cmd + ctrl - o : open -a /Applications/Obsidian.app/Contents/MacOS/Obsidian
 #cmd + ctrl - e : open -n -a Ghostty --args --title=yazi -e /opt/homebrew/bin/yazi
 #cmd + ctrl - e : open -n -a Ghostty --args --title=yazi -e /bin/zsh -c "/opt/homebrew/bin/yazi"
-cmd + ctrl - e : open -n -a Ghostty --args --config-file=$HOME/.config/ghostty/yazi-launcher
+cmd + ctrl - e : open -n -a Ghostty --args --config-file=$HOME/.config/ghostty/custom_configs/yazi-launcher
 
 # Special launchers
-# ctrl + enter : yabai -m rule --add app="Ghostty" title="Scratchpad" manage=off grid=1:1:0:0:1:1
+# ctrl - return : open -n -a Ghostty --args --config-file=$HOME/.config/ghostty/custom_configs/scratchpad
+ctrl - return : ~/.config/skhd/scripts/scratchpad.sh
+# ctrl - return : ~/.config/skhd/scripts/scratchpad.sh
 
 # Change ghostty opacity
 cmd - brightness_up : ~/.config/ghostty/scripts/opacity.sh inc
-cmd - brightness_down : ~/.config/ghostty/scripts/opacity.sh dec
+cmd - brightness_down : ~/.confi/ghostty/scripts/opacity.sh dec
 cmd - escape : ~/.config/ghostty/scripts/opacity.sh
+
+# Hide sketchybar
+ctrl + cmd - s : /opt/homebrew/bin/sketchybar --bar hidden=toggle
 
 # ================================================================
 #                            SPACES

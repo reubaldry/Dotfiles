@@ -5,14 +5,13 @@ local popup_toggle = "sketchybar --set $NAME popup.drawing=toggle"
 
 local apple_logo = sbar.add("item", {
 	padding_right = 15,
-	click_script = popup_toggle,
+	-- click_script = popup_toggle,
 	icon = {
 		string = icons.apple,
 		font = {
 			style = "Black",
 			size = 16.0,
 		},
-		color = colors.green,
 	},
 	label = {
 		drawing = false,
@@ -28,7 +27,9 @@ local apple_prefs = sbar.add("item", {
 	label = "Preferences",
 })
 
-apple_prefs:subscribe("mouse.clicked", function(_)
-	sbar.exec("open -a 'System Preferences'")
-	apple_logo:set({ popup = { drawing = false } })
+apple_logo:subscribe("mouse.clicked", function(env)
+	local menu_helper = os.getenv("HOME") .. "/.config/sketchybar/helpers/menus/bin/menus"
+
+	-- Pass the specific Control Center alias string
+	os.execute(menu_helper .. " -s 0")
 end)
