@@ -41,6 +41,8 @@ cmd + ctrl - e : open -n -a Ghostty --args --config-file=$HOME/.config/ghostty/c
 ctrl - return : ~/.config/skhd/scripts/scratchpad.sh
 # ctrl - return : ~/.config/skhd/scripts/scratchpad.sh
 
+cmd + shift + ctrl + alt - t: ~/.config/skhd/scripts/toggle_yabai.sh
+
 # Change ghostty opacity
 cmd - brightness_up : ~/.config/ghostty/scripts/opacity.sh inc
 cmd - brightness_down : ~/.confi/ghostty/scripts/opacity.sh dec
